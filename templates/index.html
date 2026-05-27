@@ -9,10 +9,10 @@
     <link href="https://jsdelivr.net" rel="stylesheet">
     <link href="https://cloudflare.com" rel="stylesheet">
     
-    <!-- Fuentes Tipográficas de Lujo -->
+    <!-- Fuentes Tipográficas Exclusivas -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         html, body {
@@ -35,18 +35,19 @@
             background: linear-gradient(135deg, #fff3d1 0%, #dfba6b 50%, #b89047 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            font-weight: 900;
         }
 
         .btn-premium {
             font-family: "Cinzel", serif;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             border-radius: 0px;
-            transition: all 0.4s ease;
-            padding: 14px 28px;
-            font-size: 0.9rem;
+            padding: 16px 32px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
 
         .btn-oro {
@@ -60,8 +61,8 @@
             background: transparent;
             color: #dfba6b !important;
             -webkit-text-fill-color: #dfba6b;
-            box-shadow: 0 4px 25px rgba(223, 186, 107, 0.4);
             transform: translateY(-2px);
+            box-shadow: 0 4px 25px rgba(223, 186, 107, 0.4);
         }
 
         .btn-espejo {
@@ -80,23 +81,21 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 150px 0;
+            padding: 160px 0;
             border-bottom: 3px solid #b89047;
-            position: relative;
         }
 
         .tarjeta-servicio {
             background-color: #121212;
             border: 1px solid #1f1f1f;
-            border-left: 3px solid #b89047;
+            border-left: 4px solid #b89047;
+            margin-bottom: 24px;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
         }
 
         .tarjeta-servicio:hover {
-            transform: scale(1.01);
             border-color: #dfba6b;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: scale(1.01);
         }
 
         .bg-tarjeta-premium {
@@ -104,35 +103,13 @@
             border: 1px solid #1f1f1f !important;
         }
 
-        .modal-content {
-            background-color: #121212;
-            border: 1px solid #dfba6b;
-            border-radius: 0;
-        }
-
-        .form-control, .form-select {
-            background-color: #0a0a0a;
-            border: 1px solid #333333;
-            color: #ffffff;
-            border-radius: 0;
-            font-family: "Montserrat", sans-serif;
-            padding: 10px;
-        }
-
-        .form-control:focus, .form-select:focus {
-            background-color: #0f0f0f;
-            border-color: #dfba6b;
-            color: #ffffff;
-            box-shadow: none;
-        }
-
         @media (max-width: 767px) {
-            .hero-section { padding: 100px 0; }
-            .hero-section h1 { font-size: 2.5rem !important; }
-            .tarjeta-servicio { flex-direction: column !important; text-align: center; padding: 25px !important; }
+            .hero-section { padding: 110px 0; }
+            .hero-section h1 { font-size: 2.6rem !important; }
+            .tarjeta-servicio { flex-direction: column !important; text-align: center; padding: 30px !important; }
             .precio-box { margin-top: 15px; }
             .d-flex-movil-gap { flex-direction: column; gap: 15px; }
-            .btn-premium { width: 100%; }
+            .btn-premium { width: 100%; text-align: center; }
         }
 
         .btn-whatsapp-flotante {
@@ -156,15 +133,20 @@
 </head>
 <body>
 
-    <!-- HERO HEADER -->
-    <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/static/barberia.jpg');">
+    <!-- HERO HEADER (Encabezado con tu imagen de fondo) -->
+    <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('/static/barberia.jpg');">
         <div class="container px-4">
             <h1 class="display-1 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
             <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 6px; font-weight: 300;">Estilo • Elegancia • Tradición</p>
             
-            <!-- Botones de Acción con Lógica Inteligente -->
             <div class="d-flex justify-content-center gap-4 d-flex-movil-gap">
-                <button onclick="procesarAccionCita()" class="btn btn-premium btn-oro shadow">Agendar Ritual</button>
+                <!-- Enlace HTML directo optimizado al 100% para abrir tu chat corporativo -->
+                <a href="https://wa.me" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="btn btn-premium btn-oro shadow">
+                   Agendar Ritual
+                </a>
                 <a href="#menu-servicios" class="btn btn-premium btn-espejo">Ver Menú</a>
             </div>
         </div>
@@ -184,7 +166,7 @@
                     <div class="tarjeta-servicio p-4 d-flex justify-content-between align-items-center shadow-sm">
                         <div>
                             <h4 class="mb-2 fw-bold text-white fs-5" style="letter-spacing: 1px;">{{ servicio.nombre }}</h4>
-                            <p class="text-muted small mb-0" style="font-weight: 300; line-height: 1.6;">{{ servicio.descripcion }}</p>
+                            <p class="text-muted small mb-0" style="line-height: 1.6; font-weight: 300;">{{ servicio.descripcion }}</p>
                         </div>
                         <div class="precio-box">
                             <span class="fs-3 fw-bold texto-dorado ms-md-4" style="font-family: 'Cinzel', serif;">{{ servicio.precio }}</span>
@@ -226,17 +208,12 @@
         </section>
     </main>
 
-    <!-- VENTANA EMERGENTE (MODAL) EXCLUSIVA PARA DESKTOP / PC -->
-    <div class="modal fade" id="modalComputadora" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fuente-editorial texto-dorado text-uppercase fs-5">Reservar Turno Externo</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body pt-4">
-                    <form action="/guardar_reserva" method="POST">
-                        <div class="mb-3">
-                            <label class="form-label text-muted small text-uppercase fw-bold">Nombre Completo</label>
-                            <input type="text" name="nombre" class="form-control" required placeholder="Ej. Carlos Mendoza">
-                        </div>
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Librería JavaScript de Bootstrap nativa -->
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>
