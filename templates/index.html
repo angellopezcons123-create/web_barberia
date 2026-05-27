@@ -2,124 +2,193 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Bloquea el zoom automático molesto en móviles al tocar elementos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Loko Barber | Barbería Premium</title>
     
-    <!-- CDNs Oficiales y Completos de Bootstrap 5 y FontAwesome -->
+    <!-- CDNs de Alto Rendimiento -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <link href="https://cloudflare.com" rel="stylesheet">
     <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
-        /* Anti-desborde global absoluto para evitar pantallas descuadradas */
+        :root {
+            --oro-premium: #dfba6b;
+            --oro-oscuro: #b89047;
+            --negro-absoluto: #0a0a0a;
+            --gris-tarjeta: #121212;
+            --blanco-marfil: #f5f5f3;
+        }
+
         html, body {
-            background-color: #080808;
-            color: #f0f0f0;
-            font-family: 'Playfair Display', serif;
+            background-color: #0a0a0a;
+            color: #f5f5f3;
+            font-family: "Montserrat", sans-serif;
             max-width: 100%;
             overflow-x: hidden !important;
+            letter-spacing: 0.5px;
         }
+
         .fuente-editorial {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
+            font-family: "Cinzel", serif;
+            letter-spacing: 3px;
+            text-shadow: 0px 2px 10px rgba(0,0,0,0.8);
         }
+
         .texto-dorado {
-            color: #d4af37 !important;
+            color: #dfba6b !important;
+            background: linear-gradient(135deg, #fff3d1 0%, #dfba6b 50%, #b89047 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
-        .btn-dorado {
-            background-color: #d4af37;
-            color: #000;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            border: 1px solid #d4af37;
-            transition: all 0.3s ease;
+
+        .btn-premium {
+            font-family: "Cinzel", serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 0px;
+            transition: all 0.4s ease;
+            padding: 14px 28px;
+            font-size: 0.9rem;
         }
-        .btn-dorado:hover {
-            background-color: transparent;
-            color: #d4af37;
+
+        .btn-oro {
+            background: linear-gradient(135deg, #dfba6b, #b89047);
+            color: #000000 !important;
+            border: 1px solid #dfba6b;
+            box-shadow: 0 4px 20px rgba(223, 186, 107, 0.2);
         }
-        .bg-tarjeta-premium {
-            background-color: #111111 !important;
-            border: 1px solid #222222 !important;
+
+        .btn-oro:hover {
+            background: transparent;
+            color: #dfba6b !important;
+            -webkit-text-fill-color: #dfba6b;
+            box-shadow: 0 4px 25px rgba(223, 186, 107, 0.4);
+            transform: translateY(-2px);
         }
+
+        .btn-espejo {
+            background: transparent;
+            color: #f5f5f3 !important;
+            border: 1px solid rgba(245, 245, 243, 0.4);
+        }
+
+        .btn-espejo:hover {
+            border-color: #dfba6b;
+            color: #dfba6b !important;
+            transform: translateY(-2px);
+        }
+
         .hero-section {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 80px 0;
-            text-align: center;
-            border-bottom: 4px solid #d4af37;
-            width: 100%;
+            padding: 140px 0;
+            border-bottom: 3px solid #b89047;
+            position: relative;
         }
+
         .tarjeta-servicio {
-            background-color: #111111;
-            border: 1px solid #222222;
+            background-color: #121212;
+            border: 1px solid #1f1f1f;
+            border-left: 3px solid #b89047;
+            transition: all 0.3s ease;
         }
-        /* Ajustes específicos e hiper-compatibles para celulares modernos */
+
+        .tarjeta-servicio:hover {
+            transform: scale(1.01);
+            border-color: #dfba6b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .bg-tarjeta-premium {
+            background-color: #121212 !important;
+            border: 1px solid #1f1f1f !important;
+        }
+
+        .modal-content {
+            background-color: #121212;
+            border: 1px solid #dfba6b;
+            border-radius: 0;
+        }
+
+        .form-control, .form-select {
+            background-color: #0a0a0a;
+            border: 1px solid #333333;
+            color: #ffffff;
+            border-radius: 0;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #0f0f0f;
+            border-color: #dfba6b;
+            color: #ffffff;
+            box-shadow: none;
+        }
+
         @media (max-width: 767px) {
-            .hero-section { padding: 60px 0; }
-            .hero-section h1 { font-size: 2.3rem !important; }
-            .tarjeta-servicio { 
-                flex-direction: column !important; 
-                text-align: center; 
-                align-items: center !important;
-            }
-            .tarjeta-servicio .precio-box { 
-                margin-top: 15px; 
-                margin-left: 0 !important; 
-                display: block;
-            }
+            .hero-section { padding: 90px 0; }
+            .hero-section h1 { font-size: 2.6rem !important; }
+            .tarjeta-servicio { flex-direction: column !important; text-align: center; }
+            .precio-box { margin-top: 12px; }
+            .d-flex-movil-gap { flex-direction: column; gap: 15px; }
+            .btn-premium { width: 100%; }
         }
+
         .btn-whatsapp-flotante {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             background-color: #25d366;
             color: white !important;
             border-radius: 50%;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 32px;
             z-index: 2000;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO HEADER: Inyección segura de la imagen de fondo con filtro oscuro -->
-    <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)), url('/static/barberia.jpg');">
+    <!-- HERO HEADER -->
+    <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/static/barberia.jpg');">
         <div class="container px-4">
-            <h1 class="display-3 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
-            <p class="fs-6 text-light text-uppercase mb-4" style="letter-spacing: 3px; font-style: italic;">Estilo, Elegancia & Tradición</p>
-            <div class="mx-auto mb-4" style="width: 80px; height: 2px; background-color: #d4af37;"></div>
-            <a href="/reservar" class="btn btn-dorado btn-md px-4 py-3 rounded-0 text-uppercase shadow-sm">Agendar un Ritual</a>
+            <h1 class="display-2 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
+            <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 5px; font-weight: 300;">Estilo • Elegancia • Tradición</p>
+            
+            <div class="d-flex justify-content-center gap-3 d-flex-movil-gap">
+                <button onclick="procesarAccionCita()" class="btn btn-premium btn-oro shadow">Agendar Ritual</button>
+                <a href="#menu-servicios" class="btn btn-premium btn-espejo">Ver Servicios</a>
+            </div>
         </div>
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="container my-5 px-4">
+    <main class="container my-5 px-4" id="menu-servicios">
         
         <!-- SECCIÓN SERVICIOS -->
-        <section class="mb-5">
-            <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado fs-3">Menú de Rituales</h2>
-            <p class="text-center text-muted mb-4 small" style="font-style: italic;">Experiencias exclusivas de peluquería y cuidado clásico</p>
+        <section class="mb-5 py-3">
+            <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado fs-2">Menú de Experiencias</h2>
+            <p class="text-center text-muted mb-5 small" style="letter-spacing: 1px; font-style: italic;">Tratamientos de autor para el caballero contemporáneo</p>
             
             <div class="row justify-content-center">
                 <div class="col-lg-9">
                     {% for servicio in servicios %}
-                    <div class="tarjeta-servicio p-4 mb-3 d-flex justify-content-between align-items-center rounded-0 shadow-sm">
+                    <div class="tarjeta-servicio p-4 mb-3 d-flex justify-content-between align-items-center shadow-sm">
                         <div>
-                            <h4 class="mb-2 fw-bold text-white fs-5">{{ servicio.nombre }}</h4>
-                            <p class="text-muted small mb-0" style="font-style: italic;">{{ servicio.descripcion }}</p>
+                            <h4 class="mb-2 fw-bold text-white fs-5" style="letter-spacing: 1px;">{{ servicio.nombre }}</h4>
+                            <p class="text-muted small mb-0" style="font-weight: 300;">{{ servicio.descripcion }}</p>
                         </div>
                         <div class="precio-box">
-                            <span class="fs-4 fw-bold texto-dorado ms-md-3 font-monospace">{{ servicio.precio }}</span>
+                            <span class="fs-4 fw-bold texto-dorado ms-md-4" style="font-family: 'Cinzel', serif;">{{ servicio.precio }}</span>
                         </div>
                     </div>
                     {% endfor %}
@@ -130,13 +199,13 @@
         <!-- HORARIOS Y ESPECIALISTAS -->
         <section class="row g-4 mb-4">
             <div class="col-md-6">
-                <div class="p-4 rounded-0 bg-tarjeta-premium shadow-sm">
+                <div class="p-4 bg-tarjeta-premium shadow-sm">
                     <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-5 fuente-editorial"><i class="fa-regular fa-clock me-2"></i> Horarios</h3>
                     <ul class="list-unstyled mb-0">
                         {% for h in horarios %}
-                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-opacity-25 small">
-                            <span class="fw-semibold text-light">{{ h.dias }}</span>
-                            <span class="text-muted">{{ h.horas }}</span>
+                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-opacity-10 small">
+                            <span class="fw-semibold text-muted">{{ h.dias }}</span>
+                            <span class="text-white">{{ h.horas }}</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -144,11 +213,11 @@
             </div>
             
             <div class="col-md-6">
-                <div class="p-4 rounded-0 bg-tarjeta-premium shadow-sm">
+                <div class="p-4 bg-tarjeta-premium shadow-sm">
                     <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-5 fuente-editorial"><i class="fa-solid fa-scissors me-2"></i> Especialistas</h3>
                     <ul class="list-unstyled mb-0">
                         {% for barbero in barberos %}
-                        <li class="py-2 border-bottom border-secondary border-opacity-25 small text-light fw-semibold">
+                        <li class="py-2 border-bottom border-secondary border-opacity-10 small text-white fw-semibold">
                             <i class="fa-solid fa-circle-check texto-dorado me-2"></i> {{ barbero }}
                         </li>
                         {% endfor %}
@@ -158,12 +227,18 @@
         </section>
     </main>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Script de Bootstrap indispensable para colapsos e interactividad móvil -->
-    <script src="https://jsdelivr.net"></script>
-</body>
-</html>
+    <!-- VENTANA EMERGENTE (MODAL) PARA COMPUTADORA -->
+    <div class="modal fade" id="modalComputadora" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fuente-editorial texto-dorado text-uppercase fs-5">Reservar Turno Externo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/guardar_reserva" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label text-muted small text-uppercase">Nombre Completo</label>
+                            <input type="text" name="nombre" class="form-control" required placeholder="Ej. Carlos Mendoza">
+                        </div>
+                        <div class="mb-3">
