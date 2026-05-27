@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Muchas Gracias por Agendar! | Loko Barber</title>
+    <!-- Framework de diseño Bootstrap 5 -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <!-- Iconos profesionales FontAwesome -->
+    <link href="https://cloudflare.com" rel="stylesheet">
+    <!-- Fuentes tipográficas elegantes -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95)), url("/static/barberia.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e5e5e5;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .fuente-titulo {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            color: #d4af37;
+        }
+        .card-exito {
+            background: rgba(18, 18, 18, 0.9);
+            border: 1px solid #222222;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+        .icono-check {
+            font-size: 60px;
+            color: #25d366;
+            margin-bottom: 20px;
+            animation: scaleUp 0.5s ease-out;
+        }
+        @keyframes scaleUp {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6 card-exito p-5 shadow-lg">
+                
+                <!-- Icono animado de éxito -->
+                <div class="icono-check">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                
+                <!-- 🎯 MENSAJE DE AGRADECIMIENTO PERSONALIZADO -->
+                <h1 class="fuente-titulo fw-bold text-uppercase mb-4">¡Muchas Gracias por tu Reserva!</h1>
+                
+                <p class="fs-5 text-white mb-3">
+                    Agradecemos tu preferencia, <strong class="text-warning">{{ cliente }}</strong>.
+                </p>
+                
+                <p class="text-muted lh-base mb-4">
+                    Tu cita, dirección y datos de contacto han sido registrados de forma automática en el sistema de <strong class="text-warning">Loko Barber</strong>. Nuestro equipo se encargará de agendar los preparativos para brindarte un servicio exclusivo en el horario solicitado.
+                </p>
+                
+                <div class="mx-auto my-4" style="width: 60px; height: 1px; background-color: #222222;"></div>
+                
+                <p class="small text-muted mb-0" style="font-style: italic;">
+                    <i class="fa-solid fa-circle-info me-1"></i> El proceso ha finalizado con éxito. Ya puedes cerrar esta pestaña de forma segura.
+                </p>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Soporte JS Bootstrap -->
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

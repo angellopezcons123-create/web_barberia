@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Premium | Loko Barber</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link href="https://cloudflare.com" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.9)), url("/static/barberia.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e5e5e5;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .fuente-titulo { font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .glass-card {
+            background: rgba(12, 12, 12, 0.9);
+            border: 1px solid #222222;
+            border-radius: 16px;
+        }
+        .banner-lateral {
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.15), rgba(5, 5, 5, 0.95)), url("/static/barberia.jpg");
+            background-size: cover;
+            background-position: center;
+            padding: 3rem;
+            border-right: 1px solid #222222;
+        }
+        .input-group-text { background-color: #161616; border: 1px solid #222222; color: #d4af37; }
+        .form-control, .form-select { background-color: #161616; border: 1px solid #222222; color: #ffffff; padding: 0.75rem 1rem; }
+        .form-control:focus, .form-select:focus { background-color: #1c1c1c; border-color: #d4af37; color: #ffffff; box-shadow: none; }
+        .btn-enviar-premium {
+            background: linear-gradient(135deg, #d4af37, #aa841c);
+            color: #050505 !important;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-enviar-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-11 glass-card p-0 shadow-lg overflow-hidden">
+                <div class="row g-0">
+                    
+                    <!-- PANEL LATERAL -->
+                    <div class="col-lg-4 d-none d-lg-flex banner-lateral flex-column justify-content-between">
+                        <div>
+                            <h3 class="fuente-titulo fw-bold text-white text-uppercase mb-1">Loko Barber</h3>
+                            <span class="text-uppercase tracking-wide small text-muted" style="letter-spacing: 2px;">Concierge Citas</span>
+                        </div>
+                        <div>
+                            <p class="small text-light opacity-75 lh-base mb-0"><i class="fa-solid fa-quote-left me-2" style="color: #d4af37;"></i>Reserve un espacio exclusivo con nuestros artesanos y reciba una experiencia sin precedentes a domicilio o en sucursal.</p>
+                        </div>
+                    </div>
+
+                    <!-- FORMULARIO -->
+                    <div class="col-lg-8 p-4 p-md-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="fuente-titulo fw-bold text-white text-uppercase m-0">Agendar Turno</h2>
+                            <span class="badge bg-dark text-warning border border-warning border-opacity-25 px-3 py-2">Paso Único</span>
+                        </div>
+
+                        <form action="/guardar_reserva" method="POST">
+                            
+                            <!-- DATOS PERSONALES -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Su Nombre</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                        <input type="text" name="nombre" class="form-control" required placeholder="Nombre completo">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Número Celular</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa-solid fa-phone-flip"></i></span>
+                                        <input type="tel" name="telefono" class="form-control" required placeholder="Ej: 3016754556">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DIRECCIÓN -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Dirección de Residencia / Local de Atención</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                                    <input type="text" name="direccion" class="form-control" required placeholder="Calle, carrera, número, barrio">
+                                </div>
+                            </div>
+
+                            <!-- SELECCIÓN BARBERO -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Seleccione su Especialista</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-scissors"></i></span>
+                                    <select name="barbero" class="form-select" required>
+                                        {% for b in barberos %}
+                                        <option value="{{ b }}">{{ b }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- SELECCIÓN SERVICIO -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Seleccione el Ritual Requerido</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-layer-group"></i></span>
+                                    <select name="servicio" class="form-select" required>
+                                        {% for s in servicios %}
+                                        <option value="{{ s.nombre }}">{{ s.nombre }} ({{ s.precio }})</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- FECHA Y HORA -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Fecha y Hora Preferida</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-regular fa-calendar-days"></i></span>
+                                    <input type="datetime-local" name="fechahora" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <!-- ENVIAR -->
+                            <button type="submit" class="btn btn-enviar-premium w-100 text-uppercase fw-bold p-3 mt-2">
+                                Confirmar Turno Exclusivo <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://jsdelivr.net"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Citas | Loko Barber</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link href="https://cloudflare.com" rel="stylesheet">
+    <style>
+        body { background-color: #080808; color: #e5e5e5; font-family: sans-serif; padding-top: 40px; }
+        .titulo-panel { font-family: 'Georgia', serif; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; }
+        .tabla-premium { background-color: #111111; border: 1px solid #222222; border-radius: 12px; overflow: hidden; }
+        th { background-color: #1a1a1a !important; color: #d4af37 !important; border-bottom: 2px solid #222222 !important; }
+        td { background-color: #111111 !important; color: #ffffff !important; border-bottom: 1px solid #222222 !important; padding: 15px !important; }
+        .resaltado-direccion { background-color: #1a1508 !important; color: #f3e5ab !important; font-weight: 600; border-radius: 4px; padding: 4px 8px; border: 1px solid rgba(212, 175, 55, 0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h1 class="titulo-panel m-0"><i class="fa-solid fa-chart-line me-2"></i> Control de Citas - Loko Barber</h1>
+            <span class="badge bg-dark text-warning p-3 border border-warning border-opacity-25 fs-6">Administrador</span>
+        </div>
+
+        <div class="table-responsive table-card shadow-lg table-premium">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>👤 Cliente</th>
+                        <th>📞 Teléfono</th>
+                        <th>📍 Dirección de Atención</th>
+                        <th>💈 Barbero</th>
+                        <th>✂️ Servicio Requerido</th>
+                        <th>📅 Horario Solicitado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr>
+                        <td><strong class="text-warning">{{ cita.cliente }}</strong></td>
+                        <td><a href="https://wa.me{{ cita.telefono }}" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-whatsapp text-success me-1"></i> {{ cita.telefono }}</a></td>
+                        <td><span class="resaltado-direccion"><i class="fa-solid fa-location-dot me-1 text-warning"></i> {{ cita.direccion }}</span></td>
+                        <td>{{ cita.barbero }}</td>
+                        <td><span class="badge bg-dark text-light border border-secondary px-3 py-2">{{ cita.servicio }}</span></td>
+                        <td><i class="fa-regular fa-calendar text-muted me-1"></i> {{ cita.fecha }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

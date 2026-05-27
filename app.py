@@ -1,0 +1,73 @@
+from flask import Flask, render_template, request
+import urllib.parse
+
+app = Flask(__name__)
+
+# Base de datos temporal en memoria para almacenar las citas
+citas_registradas = [
+    {"cliente": "Carlos Mendoza", "telefono": "3154445566", "direccion": "Carrera 43 # 72-10, Barranquilla", "barbero": "Angel 'Loko'", "servicio": "Combo Loko (Corte + Barba)", "fecha": "2026-05-28T14:30"}
+]
+
+# Servicios premium de Loko Barber
+servicios = [
+    {"id": 1, "nombre": "Corte de Cabello Clásico", "precio": "$15.000", "descripcion": "Corte personalizado a tijera o máquina, lavado y acabado con pomada de lujo."},
+    {"id": 2, "nombre": "Perfilado de Barba Ritual", "precio": "$12.000", "descripcion": "Diseño detallado de barba, afeitado con navaja tradicional y toalla caliente."},
+    {"id": 3, "nombre": "Combo Loko (Corte + Barba)", "precio": "$25.000", "descripcion": "El tratamiento insignia de la casa con exfoliación facial y masaje de cortesía."}
+]
+
+barberos = ["Angel 'Loko'", "Carlos Ortiz"]
+
+@app.route('/')
+def home():
+    horarios = [
+        {"dias": "Lunes a Viernes", "horas": "9:00 AM - 8:00 PM"},
+        {"dias": "Sábados", "horas": "8:00 AM - 9:00 PM"},
+        {"dias": "Domingos", "horas": "Cerrado"}
+    ]
+    return render_template('index.html', servicios=servicios, barberos=barberos, horarios=horarios)
+
+@app.route('/reservar')
+def reservar():
+    return render_template('reserva.html', servicios=servicios, barberos=barberos)
+
+@app.route('/guardar_reserva', methods=['POST'])
+def guardar_reserva():
+    nombre = request.form.get('nombre')
+    telefono = request.form.get('telefono')
+    direccion = request.form.get('direccion')
+    barbero = request.form.get('barbero')
+    servicio = request.form.get('servicio')
+    fechahora = request.form.get('fechahora')
+    
+    # Validación inteligente de disponibilidad de horarios
+    for cita in citas_registradas:
+        if cita['barbero'] == barbero and cita['fecha'] == fechahora:
+            return render_template('ocupado.html', barbero=barbero, fecha=fechahora.replace('T', ' a las '))
+            
+    citas_registradas.append({
+        "cliente": nombre, "telefono": telefono, "direccion": direccion,
+        "barbero": barbero, "servicio": servicio, "fecha": fechahora
+    })
+    
+    # Imprime la alerta limpia en tu terminal negra de VS Code
+    print("\n" + "═"*55)
+    print(" 🚨 ¡NUEVO TURNO AGENDADO EXCLUSIVO! 🚨 ")
+    print(f" 👤 Cliente: {nombre}")
+    print(f" 📞 Teléfono: {telefono}")
+    print(f" 📍 Dirección: {direccion}")
+    print(f" 💈 Barbero: {barbero}")
+    print(f" ✂️ Servicio: {servicio}")
+    print(f" 📅 Horario: {fechahora}")
+    print("═"*55 + "\n")
+    
+    return render_template('exito.html', cliente=nombre)
+
+@app.route('/panel_loko')
+def panel_control():
+    return render_template('panel.html', citas=citas_registradas)
+
+# 🎯 MODIFICADO: Bloque final optimizado para servidores en la nube reales
+if __name__ == '__main__':
+    from waitress import serve
+    print("\n🚀 Servidor de producción Waitress activo de forma segura en el puerto 5000...")
+    serve(app, host="0.0.0.0", port=5000)
