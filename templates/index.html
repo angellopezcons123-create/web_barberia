@@ -8,17 +8,13 @@
     <!-- CDNs de Alto Rendimiento -->
     <link href="https://jsdelivr.net" rel="stylesheet">
     <link href="https://cloudflare.com" rel="stylesheet">
-    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Fuentes Tipográficas de Lujo -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --oro-premium: #dfba6b;
-            --oro-oscuro: #b89047;
-            --negro-absoluto: #0a0a0a;
-            --gris-tarjeta: #121212;
-            --blanco-marfil: #f5f5f3;
-        }
-
         html, body {
             background-color: #0a0a0a;
             color: #f5f5f3;
@@ -84,7 +80,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 140px 0;
+            padding: 150px 0;
             border-bottom: 3px solid #b89047;
             position: relative;
         }
@@ -94,6 +90,7 @@
             border: 1px solid #1f1f1f;
             border-left: 3px solid #b89047;
             transition: all 0.3s ease;
+            margin-bottom: 20px;
         }
 
         .tarjeta-servicio:hover {
@@ -119,6 +116,7 @@
             color: #ffffff;
             border-radius: 0;
             font-family: "Montserrat", sans-serif;
+            padding: 10px;
         }
 
         .form-control:focus, .form-select:focus {
@@ -129,10 +127,10 @@
         }
 
         @media (max-width: 767px) {
-            .hero-section { padding: 90px 0; }
-            .hero-section h1 { font-size: 2.6rem !important; }
-            .tarjeta-servicio { flex-direction: column !important; text-align: center; }
-            .precio-box { margin-top: 12px; }
+            .hero-section { padding: 100px 0; }
+            .hero-section h1 { font-size: 2.5rem !important; }
+            .tarjeta-servicio { flex-direction: column !important; text-align: center; padding: 25px !important; }
+            .precio-box { margin-top: 15px; }
             .d-flex-movil-gap { flex-direction: column; gap: 15px; }
             .btn-premium { width: 100%; }
         }
@@ -161,12 +159,13 @@
     <!-- HERO HEADER -->
     <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/static/barberia.jpg');">
         <div class="container px-4">
-            <h1 class="display-2 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
-            <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 5px; font-weight: 300;">Estilo • Elegancia • Tradición</p>
+            <h1 class="display-1 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
+            <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 6px; font-weight: 300;">Estilo • Elegancia • Tradición</p>
             
-            <div class="d-flex justify-content-center gap-3 d-flex-movil-gap">
+            <!-- Botones de Acción con Lógica Inteligente -->
+            <div class="d-flex justify-content-center gap-4 d-flex-movil-gap">
                 <button onclick="procesarAccionCita()" class="btn btn-premium btn-oro shadow">Agendar Ritual</button>
-                <a href="#menu-servicios" class="btn btn-premium btn-espejo">Ver Servicios</a>
+                <a href="#menu-servicios" class="btn btn-premium btn-espejo">Ver Menú</a>
             </div>
         </div>
     </header>
@@ -175,20 +174,20 @@
     <main class="container my-5 px-4" id="menu-servicios">
         
         <!-- SECCIÓN SERVICIOS -->
-        <section class="mb-5 py-3">
-            <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado fs-2">Menú de Experiencias</h2>
-            <p class="text-center text-muted mb-5 small" style="letter-spacing: 1px; font-style: italic;">Tratamientos de autor para el caballero contemporáneo</p>
+        <section class="mb-5 py-4">
+            <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado fs-1">Menú de Experiencias</h2>
+            <p class="text-center text-muted mb-5 small" style="letter-spacing: 2px; font-style: italic;">Cuidado y alta peluquería para el caballero contemporáneo</p>
             
             <div class="row justify-content-center">
                 <div class="col-lg-9">
                     {% for servicio in servicios %}
-                    <div class="tarjeta-servicio p-4 mb-3 d-flex justify-content-between align-items-center shadow-sm">
+                    <div class="tarjeta-servicio p-4 d-flex justify-content-between align-items-center shadow-sm">
                         <div>
                             <h4 class="mb-2 fw-bold text-white fs-5" style="letter-spacing: 1px;">{{ servicio.nombre }}</h4>
-                            <p class="text-muted small mb-0" style="font-weight: 300;">{{ servicio.descripcion }}</p>
+                            <p class="text-muted small mb-0" style="font-weight: 300; line-height: 1.6;">{{ servicio.descripcion }}</p>
                         </div>
                         <div class="precio-box">
-                            <span class="fs-4 fw-bold texto-dorado ms-md-4" style="font-family: 'Cinzel', serif;">{{ servicio.precio }}</span>
+                            <span class="fs-3 fw-bold texto-dorado ms-md-4" style="font-family: 'Cinzel', serif;">{{ servicio.precio }}</span>
                         </div>
                     </div>
                     {% endfor %}
@@ -197,15 +196,15 @@
         </section>
 
         <!-- HORARIOS Y ESPECIALISTAS -->
-        <section class="row g-4 mb-4">
+        <section class="row g-4 mb-5">
             <div class="col-md-6">
                 <div class="p-4 bg-tarjeta-premium shadow-sm">
                     <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-5 fuente-editorial"><i class="fa-regular fa-clock me-2"></i> Horarios</h3>
                     <ul class="list-unstyled mb-0">
                         {% for h in horarios %}
-                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-opacity-10 small">
+                        <li class="d-flex justify-content-between py-3 border-bottom border-secondary border-opacity-10 small">
                             <span class="fw-semibold text-muted">{{ h.dias }}</span>
-                            <span class="text-white">{{ h.horas }}</span>
+                            <span class="text-white fw-bold">{{ h.horas }}</span>
                         </li>
                         {% endfor %}
                     </ul>
@@ -217,7 +216,7 @@
                     <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-5 fuente-editorial"><i class="fa-solid fa-scissors me-2"></i> Especialistas</h3>
                     <ul class="list-unstyled mb-0">
                         {% for barbero in barberos %}
-                        <li class="py-2 border-bottom border-secondary border-opacity-10 small text-white fw-semibold">
+                        <li class="py-3 border-bottom border-secondary border-opacity-10 small text-white fw-semibold">
                             <i class="fa-solid fa-circle-check texto-dorado me-2"></i> {{ barbero }}
                         </li>
                         {% endfor %}
@@ -227,18 +226,17 @@
         </section>
     </main>
 
-    <!-- VENTANA EMERGENTE (MODAL) PARA COMPUTADORA -->
+    <!-- VENTANA EMERGENTE (MODAL) EXCLUSIVA PARA DESKTOP / PC -->
     <div class="modal fade" id="modalComputadora" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header border-0">
+                <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fuente-editorial texto-dorado text-uppercase fs-5">Reservar Turno Externo</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pt-4">
                     <form action="/guardar_reserva" method="POST">
                         <div class="mb-3">
-                            <label class="form-label text-muted small text-uppercase">Nombre Completo</label>
+                            <label class="form-label text-muted small text-uppercase fw-bold">Nombre Completo</label>
                             <input type="text" name="nombre" class="form-control" required placeholder="Ej. Carlos Mendoza">
                         </div>
-                        <div class="mb-3">
