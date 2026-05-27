@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Evita que el celular haga zoom automático o deforme las letras -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Loko Barber | Barbería Premium</title>
     <link href="https://jsdelivr.net" rel="stylesheet">
     <link href="https://cloudflare.com" rel="stylesheet">
@@ -13,10 +14,11 @@
             background-color: #080808;
             color: #f0f0f0;
             font-family: 'Playfair Display', serif;
+            overflow-x: hidden; /* Evita que la pantalla se mueva hacia los lados */
         }
         .fuente-editorial {
             font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
         }
         .texto-dorado {
             color: #d4af37 !important;
@@ -26,30 +28,31 @@
             border: 1px solid #222222 !important;
         }
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("/static/barberia.jpg");
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("https://unsplash.com");
             background-size: cover;
-            background-position: center 30%;
-            height: 550px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-position: center;
+            /* Fija la imagen de forma segura para evitar fallos gráficos en celulares */
+            background-repeat: no-repeat;
+            padding: 100px 0;
             text-align: center;
             border-bottom: 4px solid #d4af37;
+            width: 100%;
         }
         .tarjeta-servicio {
             background-color: #111111;
             border-bottom: 1px solid #222222;
             transition: all 0.3s ease;
         }
-        .tarjeta-servicio:hover {
-            border-bottom-color: #d4af37;
-            background-color: #161616;
-            transform: translateY(-2px);
+        /* Elimina el desborde en pantallas táctiles pequeñas */
+        @media (max-width: 576px) {
+            .hero-section h1 { font-size: 2.5rem !important; }
+            .tarjeta-servicio { flex-direction: column; text-align: center; }
+            .tarjeta-servicio span { margin-top: 10px; margin-left: 0 !important; }
         }
         .btn-whatsapp-flotante {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             background-color: #25d366;
             color: white !important;
             border-radius: 50%;
@@ -60,7 +63,7 @@
             justify-content: center;
             font-size: 32px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            z-index: 1000;
+            z-index: 1050;
         }
     </style>
 </head>
@@ -68,28 +71,28 @@
 
     <!-- HERO HEADER -->
     <header class="hero-section">
-        <div class="container">
-            <h1 class="display-1 fw-bold texto-dorado text-uppercase fuente-editorial mb-1">Loko Barber</h1>
-            <p class="fs-4 text-light text-uppercase tracking-wide mb-4" style="letter-spacing: 5px; font-style: italic;">Estilo, Elegancia & Tradición</p>
-            <div class="mx-auto" style="width: 120px; height: 2px; background-color: #d4af37;"></div>
+        <div class="container px-3">
+            <h1 class="display-2 fw-bold texto-dorado text-uppercase fuente-editorial mb-1">Loko Barber</h1>
+            <p class="fs-5 text-light text-uppercase tracking-wide mb-4" style="letter-spacing: 3px; font-style: italic;">Estilo, Elegancia & Tradición</p>
+            <div class="mx-auto" style="width: 100px; height: 2px; background-color: #d4af37;"></div>
         </div>
     </header>
 
-    <main class="container my-5">
+    <main class="container my-5 px-3">
         
         <!-- SECCIÓN SERVICIOS -->
         <section class="mb-5">
             <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado">Menú de Rituales</h2>
-            <p class="text-center text-muted mb-5" style="font-style: italic;">Experiencias exclusivas de peluquería y cuidado clásico</p>
+            <p class="text-center text-muted mb-4" style="font-style: italic;">Experiencias exclusivas de peluquería y cuidado clásico</p>
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     {% for servicio in servicios %}
                     <div class="tarjeta-servicio p-4 mb-3 d-flex justify-content-between align-items-center shadow-sm rounded">
                         <div>
-                            <h4 class="mb-1 fw-bold text-white font-monospace">{{ servicio.nombre }}</h4>
+                            <h4 class="mb-1 fw-bold text-white font-monospace fs-5">{{ servicio.nombre }}</h4>
                             <p class="text-muted small mb-0" style="font-style: italic;">{{ servicio.descripcion }}</p>
                         </div>
-                        <span class="fs-2 fw-bold texto-dorado ms-3">{{ servicio.precio }}</span>
+                        <span class="fs-3 fw-bold texto-dorado ms-3 font-monospace">{{ servicio.precio }}</span>
                     </div>
                     {% endfor %}
                 </div>
@@ -100,10 +103,10 @@
         <div class="row g-4 mb-5">
             <div class="col-md-6">
                 <div class="p-4 rounded h-100 bg-tarjeta-premium shadow">
-                    <h3 class="texto-dorado mb-4 text-uppercase fw-bold fuente-editorial"><i class="fa-regular fa-clock me-2"></i> Horarios</h3>
+                    <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-4 fuente-editorial"><i class="fa-regular fa-clock me-2"></i> Horarios</h3>
                     <ul class="list-unstyled mb-0">
                         {% for h in horarios %}
-                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-opacity-25">
+                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary border-opacity-25 small">
                             <span class="fw-semibold text-light">{{ h.dias }}</span>
                             <span class="text-muted">{{ h.horas }}</span>
                         </li>
@@ -114,11 +117,11 @@
             
             <div class="col-md-6">
                 <div class="p-4 rounded h-100 bg-tarjeta-premium shadow">
-                    <h3 class="texto-dorado mb-4 text-uppercase fw-bold fuente-editorial"><i class="fa-solid fa-scissors me-2"></i> Especialistas</h3>
+                    <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-4 fuente-editorial"><i class="fa-solid fa-scissors me-2"></i> Especialistas</h3>
                     <div class="row g-3">
                         {% for b in barberos %}
                         <div class="col-12 p-3 bg-dark bg-opacity-25 rounded border border-secondary border-opacity-25">
-                            <h5 class="mb-1 text-white fw-bold"><i class="fa-solid fa-user-check text-muted me-2"></i>{{ b }}</h5>
+                            <h5 class="mb-0 text-white fw-bold fs-6"><i class="fa-solid fa-user-check text-muted me-2"></i>{{ b }}</h5>
                         </div>
                         {% endfor %}
                     </div>
@@ -127,16 +130,16 @@
         </div>
 
         <!-- SECCIÓN ENLACE DE RESERVA -->
-        <section class="text-center mt-5 p-5 border border-warning border-opacity-25 rounded bg-tarjeta-premium shadow-lg">
-            <h3 class="texto-dorado fuente-editorial text-uppercase mb-3">Agenda Tu Espacio</h3>
-            <p class="mb-4 text-muted fs-5" style="font-style: italic;">Haga clic abajo para abrir el concierge digital e ingresar sus datos y dirección.</p>
-            <a href="/reservar" target="_blank" class="btn btn-lg btn-outline-warning px-5 text-uppercase fw-bold" style="letter-spacing: 2px;">Agendar Turno Online</a>
+        <section class="text-center mt-5 p-4 p-sm-5 border border-warning border-opacity-25 rounded bg-tarjeta-premium shadow-lg">
+            <h3 class="texto-dorado fuente-editorial text-uppercase mb-3 fs-4">Agenda Tu Espacio</h3>
+            <p class="mb-4 text-muted small" style="font-style: italic;">Haga clic abajo para abrir el concierge digital e ingresar sus datos y dirección.</p>
+            <a href="/reservar" class="btn btn-lg btn-outline-warning w-100 py-3 text-uppercase fw-bold style-boton" style="letter-spacing: 1px; max-width: 320px; font-size: 0.9rem;">Agendar Turno Online</a>
         </section>
 
         <!-- ENLACE INSTAGRAM -->
         <section class="text-center mt-5">
-            <h5 class="text-uppercase text-muted small tracking-wide mb-3">Conecta en Redes Sociales</h5>
-            <a href="https://instagram.com" target="_blank" class="text-white fs-4 text-decoration-none border border-secondary border-opacity-50 px-4 py-2 rounded-pill bg-dark bg-opacity-50 shadow-sm"><i class="fa-brands fa-instagram texto-dorado me-2"></i>@angelll.cc</a>
+            <h5 class="text-uppercase text-muted small tracking-wide mb-3" style="font-size: 0.75rem;">Conecta en Redes Sociales</h5>
+            <a href="https://instagram.com" target="_blank" class="text-white small text-decoration-none border border-secondary border-opacity-50 px-4 py-2 rounded-pill bg-dark bg-opacity-50 shadow-sm"><i class="fa-brands fa-instagram texto-dorado me-2"></i>@angelll.cc</a>
         </section>
 
     </main>
@@ -147,7 +150,7 @@
     </a>
 
     <footer class="text-center py-4 bg-black text-muted mt-5 border-top border-secondary border-opacity-25">
-        <p class="mb-0 small">&copy; 2026 Loko Barber - Haute Coiffure Masculina</p>
+        <p class="mb-0 small" style="font-size: 0.75rem;">&copy; 2026 Loko Barber - Haute Coiffure Masculina</p>
     </footer>
 </body>
 </html>
