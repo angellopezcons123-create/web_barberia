@@ -4,37 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Loko Barber</title>
-    
-    <!-- Conexión ultra rápida a servidores de estilos (Preconnect) -->
-    <link rel="preconnect" href="https://jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-
-    <!-- Estilos de Bootstrap y FontAwesome -->
-    <link href="https://jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    
-    <!-- Fuentes de Google optimizadas con 'display=swap' para carga instantánea del texto -->
-    <link href="https://googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    
+    <!-- Carga de librerías ultra rápidas desde redes globales -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link href="https://cloudflare.com" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Base sólida inmediata para evitar pantallas blancas */
         html, body {
             background-color: #0a0a0a !important;
             color: #f5f5f3;
-            font-family: "Montserrat", -apple-system, sans-serif;
+            font-family: "Montserrat", sans-serif;
             max-width: 100%;
             overflow-x: hidden !important;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
         }
-
-        .fuente-editorial {
-            font-family: "Cinzel", serif;
-            letter-spacing: 3px;
-        }
-
+        .fuente-editorial { font-family: "Cinzel", serif; letter-spacing: 2px; }
         .texto-dorado {
             color: #dfba6b !important;
             background: linear-gradient(135deg, #fff3d1 0%, #dfba6b 50%, #b89047 100%);
@@ -42,128 +25,63 @@
             -webkit-text-fill-color: transparent;
             font-weight: 900;
         }
-
         .btn-premium {
             font-family: "Cinzel", serif;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             border-radius: 0px;
-            padding: 16px 32px;
+            padding: 15px 30px;
             text-decoration: none;
             display: inline-block;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .btn-oro {
-            background: linear-gradient(135deg, #dfba6b, #b89047);
-            color: #000000 !important;
-            border: 1px solid #dfba6b;
-        }
-
-        .btn-oro:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(223, 186, 107, 0.4);
-        }
-
-        .btn-espejo {
-            background: transparent;
-            color: #f5f5f3 !important;
-            border: 1px solid rgba(245, 245, 243, 0.4);
-        }
-
-        .btn-espejo:hover {
-            border-color: #dfba6b;
-            color: #dfba6b !important;
-            transform: translateY(-2px);
-        }
-
-        /* Hero optimizado: Fondo negro inicial para evitar destellos blancos */
+        .btn-oro { background: linear-gradient(135deg, #dfba6b, #b89047); color: #000000 !important; border: 1px solid #dfba6b; }
+        .btn-espejo { background: transparent; color: #f5f5f3 !important; border: 1px solid rgba(245, 245, 243, 0.4); }
+        /* Imagen comprimida en la nube para que cargue en menos de 1 segundo */
         .hero-section {
-            background-color: #0a0a0a;
-            background-position: center;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://unsplash.com') no-repeat center;
             background-size: cover;
-            background-repeat: no-repeat;
-            padding: 140px 0;
+            padding: 120px 0;
             border-bottom: 3px solid #b89047;
         }
-
-        .tarjeta-servicio {
-            background-color: #121212;
-            border: 1px solid #1f1f1f;
-            border-left: 4px solid #b89047;
-            margin-bottom: 24px;
-        }
-
-        .bg-tarjeta-premium {
-            background-color: #121212 !important;
-            border: 1px solid #1f1f1f !important;
-        }
-
+        .tarjeta-servicio { background-color: #121212; border: 1px solid #1f1f1f; border-left: 4px solid #b89047; margin-bottom: 20px; }
+        .bg-tarjeta-premium { background-color: #121212 !important; border: 1px solid #1f1f1f !important; }
         @media (max-width: 767px) {
-            .hero-section { padding: 100px 0; }
-            .hero-section h1 { font-size: 2.5rem !important; }
+            .hero-section { padding: 80px 0; }
+            .hero-section h1 { font-size: 2.4rem !important; }
             .tarjeta-servicio { flex-direction: column !important; text-align: center; padding: 25px !important; }
-            .precio-box { margin-top: 15px; }
+            .precio-box { margin-top: 12px; }
             .d-flex-movil-gap { flex-direction: column; gap: 15px; }
             .btn-premium { width: 100%; text-align: center; }
         }
-
-        .btn-whatsapp-flotante {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
-            color: white !important;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            z-index: 2000;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-        }
+        .btn-whatsapp-flotante { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white !important; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 2000; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
 
-    <!-- HERO HEADER: Filtro degradado con fondo nativo inmediato -->
-    <header class="hero-section text-center" style="background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('/static/barberia.jpg');">
+    <header class="hero-section text-center">
         <div class="container px-4">
             <h1 class="display-1 fw-bold texto-dorado text-uppercase fuente-editorial mb-2">Loko Barber</h1>
-            <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 6px; font-weight: 300;">Estilo • Elegancia • Tradición</p>
-            
+            <p class="fs-6 text-uppercase mb-5 text-muted" style="letter-spacing: 5px;">Estilo • Elegancia • Tradición</p>
             <div class="d-flex justify-content-center gap-4 d-flex-movil-gap">
-                <!-- Enlace API directo de Meta ultra-fluido -->
-                <a href="https://whatsapp.com" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="btn btn-premium btn-oro shadow">
-                   Agendar Ritual
-                </a>
+                <!-- ENLACE CORREGIDO: Abre tu chat exacto sin importar el celular -->
+                <a href="https://wa.me" target="_blank" rel="noopener noreferrer" class="btn btn-premium btn-oro shadow">Agendar Ritual</a>
                 <a href="#menu-servicios" class="btn btn-premium btn-espejo">Ver Menú</a>
             </div>
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main class="container my-5 px-4" id="menu-servicios">
-        
-        <!-- SECCIÓN SERVICIOS -->
         <section class="mb-5 py-4">
             <h2 class="text-center mb-2 text-uppercase fw-bold fuente-editorial texto-dorado fs-1">Menú de Experiencias</h2>
             <p class="text-center text-muted mb-5 small" style="letter-spacing: 2px; font-style: italic;">Cuidado y alta peluquería para el caballero contemporáneo</p>
-            
             <div class="row justify-content-center">
                 <div class="col-lg-9">
                     {% for servicio in servicios %}
                     <div class="tarjeta-servicio p-4 d-flex justify-content-between align-items-center shadow-sm">
                         <div>
                             <h4 class="mb-2 fw-bold text-white fs-5" style="letter-spacing: 1px;">{{ servicio.nombre }}</h4>
-                            <p class="text-muted small mb-0" style="line-height: 1.6; font-weight: 300;">{{ servicio.descripcion }}</p>
+                            <p class="text-muted small mb-0" style="line-height: 1.6;">{{ servicio.descripcion }}</p>
                         </div>
                         <div class="precio-box">
                             <span class="fs-3 fw-bold texto-dorado ms-md-4" style="font-family: 'Cinzel', serif;">{{ servicio.precio }}</span>
@@ -174,7 +92,6 @@
             </div>
         </section>
 
-        <!-- HORARIOS Y ESPECIALISTAS -->
         <section class="row g-4 mb-5">
             <div class="col-md-6">
                 <div class="p-4 bg-tarjeta-premium shadow-sm">
@@ -189,7 +106,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="col-md-6">
                 <div class="p-4 bg-tarjeta-premium shadow-sm">
                     <h3 class="texto-dorado mb-4 text-uppercase fw-bold fs-5 fuente-editorial"><i class="fa-solid fa-scissors me-2"></i> Especialistas</h3>
@@ -205,12 +121,6 @@
         </section>
     </main>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://whatsapp.com" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Carga diferida del script para máxima velocidad inicial -->
-    <script src="https://jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <a href="https://wa.me" class="btn-whatsapp-flotante" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
 </body>
 </html>
