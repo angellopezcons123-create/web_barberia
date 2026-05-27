@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Reserva Premium | Loko Barber</title>
     <link href="https://jsdelivr.net" rel="stylesheet">
     <link href="https://cloudflare.com" rel="stylesheet">
@@ -10,106 +10,114 @@
     
     <style>
         body {
-            background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.9)), url("/static/barberia.jpg");
+            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95)), url("https://unsplash.com");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: #e5e5e5;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
+            overflow-x: hidden;
         }
         .fuente-titulo { font-family: 'Cinzel', serif; letter-spacing: 2px; }
         .glass-card {
-            background: rgba(12, 12, 12, 0.9);
+            background: #111111;
             border: 1px solid #222222;
-            border-radius: 16px;
+            border-radius: 12px;
         }
         .banner-lateral {
-            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.15), rgba(5, 5, 5, 0.95)), url("/static/barberia.jpg");
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.15), rgba(5, 5, 5, 0.95)), url("https://unsplash.com");
             background-size: cover;
             background-position: center;
             padding: 3rem;
             border-right: 1px solid #222222;
         }
         .input-group-text { background-color: #161616; border: 1px solid #222222; color: #d4af37; }
-        .form-control, .form-select { background-color: #161616; border: 1px solid #222222; color: #ffffff; padding: 0.75rem 1rem; }
+        .form-control, .form-select { background-color: #161616; border: 1px solid #222222; color: #ffffff; padding: 0.75rem 1rem; font-size: 0.95rem; }
         .form-control:focus, .form-select:focus { background-color: #1c1c1c; border-color: #d4af37; color: #ffffff; box-shadow: none; }
+        
+        .selector-servicio {
+            cursor: pointer;
+            background-color: #161616;
+            border: 1px solid #222222;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        .radio-oculto { display: none; }
+        .radio-oculto:checked + .selector-servicio {
+            border-color: #d4af37;
+            background-color: #1a1a1a;
+        }
+        .radio-oculto:checked + .selector-servicio h6 { color: #d4af37 !important; }
+
         .btn-enviar-premium {
             background: linear-gradient(135deg, #d4af37, #aa841c);
             color: #050505 !important;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             border: none;
             border-radius: 8px;
             padding: 1rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
-        .btn-enviar-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        @media (max-width: 576px) {
+            .selector-servicio { flex-direction: column; text-align: center; }
+            .selector-servicio span { margin-top: 5px; }
         }
     </style>
 </head>
-<body>
+<body class="py-3 py-sm-5">
 
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-xl-11 glass-card p-0 shadow-lg overflow-hidden">
+    <div class="container px-2 px-sm-3">
+        <div class="row justify-content-center g-0">
+            <div class="col-xl-11 glass-card overflow-hidden shadow-lg">
                 <div class="row g-0">
                     
-                    <!-- PANEL LATERAL -->
+                    <!-- PANEL LATERAL (Escondido automáticamente en celular para que no estorbe) -->
                     <div class="col-lg-4 d-none d-lg-flex banner-lateral flex-column justify-content-between">
                         <div>
                             <h3 class="fuente-titulo fw-bold text-white text-uppercase mb-1">Loko Barber</h3>
                             <span class="text-uppercase tracking-wide small text-muted" style="letter-spacing: 2px;">Concierge Citas</span>
                         </div>
                         <div>
-                            <p class="small text-light opacity-75 lh-base mb-0"><i class="fa-solid fa-quote-left me-2" style="color: #d4af37;"></i>Reserve un espacio exclusivo con nuestros artesanos y reciba una experiencia sin precedentes a domicilio o en sucursal.</p>
+                            <p class="small text-light opacity-75 lh-base mb-0"><i class="fa-solid fa-quote-left me-2" style="color: #d4af37;"></i>Reserve un espacio exclusivo con nuestros artesanos y reciba una experiencia sin precedentes.</p>
                         </div>
                     </div>
 
-                    <!-- FORMULARIO -->
-                    <div class="col-lg-8 p-4 p-md-5">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h2 class="fuente-titulo fw-bold text-white text-uppercase m-0">Agendar Turno</h2>
-                            <span class="badge bg-dark text-warning border border-warning border-opacity-25 px-3 py-2">Paso Único</span>
+                    <!-- FORMULARIO ULTRA FLUIDO -->
+                    <div class="col-lg-8 p-3 p-sm-5">
+                        <div class="text-center text-sm-start mb-4">
+                            <h2 class="fuente-titulo fw-bold text-white text-uppercase m-0 fs-3">Agendar Turno</h2>
+                            <small class="badge bg-dark text-warning border border-warning border-opacity-25 mt-2">Paso Único Móvil</small>
                         </div>
 
                         <form action="/guardar_reserva" method="POST">
                             
-                            <!-- DATOS PERSONALES -->
-                            <div class="row g-3 mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Su Nombre</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-                                        <input type="text" name="nombre" class="form-control" required placeholder="Nombre completo">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Número Celular</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa-solid fa-phone-flip"></i></span>
-                                        <input type="tel" name="telefono" class="form-control" required placeholder="Ej: 3016754556">
-                                    </div>
+                            <div class="mb-3">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-1" style="font-size: 0.75rem;">Su Nombre</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+                                    <input type="text" name="nombre" class="form-control" required placeholder="Nombre completo">
                                 </div>
                             </div>
 
-                            <!-- DIRECCIÓN -->
-                            <div class="mb-4">
-                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Dirección de Residencia / Local de Atención</label>
+                            <div class="mb-3">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-1" style="font-size: 0.75rem;">Número Celular</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-phone-flip"></i></span>
+                                    <input type="tel" name="telefono" class="form-control" required placeholder="Ej: 3016754556">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-1" style="font-size: 0.75rem;">Dirección de Atención</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
                                     <input type="text" name="direccion" class="form-control" required placeholder="Calle, carrera, número, barrio">
                                 </div>
                             </div>
 
-                            <!-- SELECCIÓN BARBERO -->
-                            <div class="mb-4">
-                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Seleccione su Especialista</label>
+                            <div class="mb-3">
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-1" style="font-size: 0.75rem;">Seleccione su Especialista</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-scissors"></i></span>
                                     <select name="barbero" class="form-select" required>
@@ -120,31 +128,35 @@
                                 </div>
                             </div>
 
-                            <!-- SELECCIÓN SERVICIO -->
+                            <!-- TARJETAS CORREGIDAS PARA CELULAR -->
                             <div class="mb-4">
-                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Seleccione el Ritual Requerido</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fa-solid fa-layer-group"></i></span>
-                                    <select name="servicio" class="form-select" required>
-                                        {% for s in servicios %}
-                                        <option value="{{ s.nombre }}">{{ s.nombre }} ({{ s.precio }})</option>
-                                        {% endfor %}
-                                    </select>
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2" style="font-size: 0.75rem;">Seleccione el Ritual Requerido</label>
+                                <div class="row g-2">
+                                    {% for s in servicios %}
+                                    <div class="col-12">
+                                        <input type="radio" name="servicio" value="{{ s.nombre }}" id="serv_{{ s.id }}" class="radio-oculto" required>
+                                        <label for="serv_{{ s.id }}" class="selector-servicio p-3 d-flex justify-content-between align-items-center w-100">
+                                            <div class="text-start pe-2">
+                                                <h6 class="mb-1 text-white fw-bold small m-0">{{ s.nombre }}</h6>
+                                                <p class="text-muted small mb-0 lh-sm style-desc" style="font-size: 0.75rem; font-style: italic;">{{ s.descripcion }}</p>
+                                            </div>
+                                            <span class="fw-bold text-warning font-monospace fs-6">{{ s.precio }}</span>
+                                        </label>
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
-                            <!-- FECHA Y HORA -->
                             <div class="mb-4">
-                                <label class="form-label text-muted small text-uppercase fw-semibold mb-2">Fecha y Hora Preferida</label>
+                                <label class="form-label text-muted small text-uppercase fw-semibold mb-1" style="font-size: 0.75rem;">Fecha y Hora Preferida</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-regular fa-calendar-days"></i></span>
                                     <input type="datetime-local" name="fechahora" class="form-control" required>
                                 </div>
                             </div>
 
-                            <!-- ENVIAR -->
-                            <button type="submit" class="btn btn-enviar-premium w-100 text-uppercase fw-bold p-3 mt-2">
-                                Confirmar Turno Exclusivo <i class="fa-solid fa-arrow-right ms-2"></i>
+                            <button type="submit" class="btn btn-enviar-premium w-100 text-uppercase fw-bold p-3">
+                                Confirmar Turno Exclusivo <i class="fa-solid fa-arrow-right ms-1"></i>
                             </button>
                         </form>
 
