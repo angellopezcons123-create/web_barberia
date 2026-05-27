@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Base de datos en memoria para almacenar las citas
 citas_registradas = [
     {"cliente": "Carlos Mendoza", "telefono": "3154445566", "direccion": "Carrera 43 # 72-10", "barbero": "Angel 'Loko'", "servicio": "Combo Loko (Corte + Barba)", "fecha": "2026-05-28T14:30"}
 ]
@@ -24,10 +23,6 @@ def home():
     ]
     return render_template('index.html', servicios=servicios, barberos=barberos, horarios=horarios)
 
-@app.route('/reservar')
-def reservar():
-    return render_template('reserva.html', servicios=servicios, barberos=barberos)
-
 @app.route('/guardar_reserva', methods=['POST'])
 def guardar_reserva():
     nombre = request.form.get('nombre')
@@ -37,7 +32,6 @@ def guardar_reserva():
     servicio = request.form.get('servicio')
     fechahora = request.form.get('fechahora')
     
-    # Validación por si el horario ya está ocupado
     for cita in citas_registradas:
         if cita['barbero'] == barbero and cita['fecha'] == fechahora:
             return render_template('ocupado.html', barbero=barbero, fecha=fechahora.replace('T', ' a las '))
